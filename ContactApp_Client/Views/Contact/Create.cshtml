@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model ContactApp_Client.ViewModels.ContactViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    @Styles.Render("/Content/bootstrapcss")
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $("#btnSave").click(function () {
+
+                var validation = $("#FrmIndex"); // My From Id
+                if (!validation.valid()) {
+                    return false;
+                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="modal" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Contact Details</h4>
+
+                </div>
+                @using (Html.BeginForm("Create", "Contact", FormMethod.Post))
+                {
+                    <table cellpadding="2" cellspacing="2">
+                        <tr>
+                            <td>@Html.LabelFor(model => model.contact.FirstName)</td>
+                            <td>@Html.TextBoxFor(model => model.contact.FirstName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.contact.LastName)</td>
+                            <td>@Html.TextBoxFor(model => model.contact.LastName)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.contact.Email)</td>
+                            <td>@Html.TextBoxFor(model => model.contact.Email)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.contact.PhoneNumber)</td>
+                            <td>@Html.TextBoxFor(model => model.contact.PhoneNumber)</td>
+                        </tr>
+                        @*<tr>
+                                <td>@Html.LabelFor(model => model.contact.Status)</td>
+                                <td>@Html.TextBoxFor(model => model.contact.Status)</td>
+                            </tr>*@
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><input type="submit" style="float: left;" id="btnSave" title="btn"  value="Save" /></td>
+                        </tr>
+                    </table>
+                }
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onClick="parent.location='Index'" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
